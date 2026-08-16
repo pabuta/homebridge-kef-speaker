@@ -76,7 +76,7 @@ export class KefConnector {
       path: 'player:volume',
       roles: 'value',
       value: JSON.stringify({ type: 'i32_', i32_: volume }),
-    });
+    }, 'POST');
   }
 
   async mute(): Promise<void> {
@@ -103,9 +103,8 @@ export class KefConnector {
       path: 'settings:/kef/play/physicalSource',
       roles: 'value',
       value: JSON.stringify({ type: 'kefPhysicalSource', kefPhysicalSource: source }),
-    });
+    }, 'POST');
   }
-
   /**
    * Status control
    */
@@ -117,12 +116,12 @@ export class KefConnector {
     return response[0]?.kefSpeakerStatus || 'standby';
   }
 
-  async setStatus(status: 'powerOn' | 'standby'): Promise<void> {
+  async setStatus(status: 'powerOn' | 'standby'): Promise<void> { 
     await this.apiRequest('setData', {
       path: 'settings:/kef/play/physicalSource',
       roles: 'value',
       value: JSON.stringify({ type: 'kefPhysicalSource', kefPhysicalSource: status }),
-    });
+    }, 'POST');
   }
 
   /**
@@ -145,7 +144,7 @@ export class KefConnector {
       path: 'player:player/control',
       roles: 'activate',
       value: JSON.stringify({ control: command }),
-    });
+    }, 'POST');
   }
 
   /**
