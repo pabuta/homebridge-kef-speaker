@@ -103,7 +103,7 @@ export class KefSpeakerAccessory {
 
     // Create input sources
     supportedSources.forEach((source, index) => {
-      const inputSource = this.accessory.getServiceById(this.platform.Service.InputSource, source);
+      let inputSource = this.accessory.getServiceById(this.platform.Service.InputSource, source);
       if (!inputSource) {
         inputSource = this.accessory.addService(this.platform.Service.InputSource, source, source);
       }
